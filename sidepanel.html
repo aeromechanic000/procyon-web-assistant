@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+<head>
+    <title>My Sidepanel</title>
+    <style></style>
+    <script src="script.js"></script>
+    <script src="actions.js"></script>
+</head>
+<body>
+    <div class="tab">
+        <button class="tablinks" id="assistant_bt">Assistant</button>
+        <button class="tablinks" id="personal_bt">Personal</button>
+        <button class="tablinks" id="settings_bt">Settings</button>
+    </div>
+    <div id="assistant" class="tabcontent">
+        <div id="assistant_output">
+        </div>
+        <div id="assistant_input">
+            <textarea id="assistant_input_text" placeholder="Type your command here. (ENTER to send; SHIFT/CTRL/OPTION + ENTER to break the line)"></textarea>
+            <div id="assistant_input_operations">
+                <table width="100%"><tr>
+                <td width="25%">
+                    <div style="display:flex;align-items:center;gap:2px">
+                        <input type="checkbox" id="assistant_input_online" style="width:14px;height:14px">
+                        <label for="assistant_input_online" style="font-size:14px;height:24px;line-height:24px">Online</label>
+                    </div>
+                </td>
+                <td width="25%">
+                    <div style="display:none;align-items:center;gap:2px">
+                        <input type="checkbox" id="assistant_input_auto" style="width:14px;height:14px">
+                        <label for="assistant_input_auto" style="font-size:14px;height:24px;line-height:24px">Auto</label>
+                    </div>
+                </td>
+                <td width="25%"></td>
+                <td width="25%"><button id="assistant_input_send" class="button" style="width:90%">Send</button></td>
+                </tr></table>
+            </div>
+        </div>
+    </div>
+    <div id="personal" class="tabcontent">
+        <div class="tabhint">
+            <p>You need to save the relevant section for the changes to take effect. Join in my server in Discord for more information <a href="https://discord.gg/hhjxbuNk">aeromechanic's server</a>.</p>
+        </div>
+        <div id="personal_area">
+            <div class="personal_block">
+                <div class="personal_row">Personalization Setting (Optional)</div>
+                <div class="personal_row">
+                    <label style="width:40%">Preferred Name</label> &nbsp;&nbsp;
+                    <input type="text" id="personalization_setting_preferred_name" style="width:60%" value="">
+                </div>
+                <div class="personal_row">
+                    <label style="width:40%">Assistant Name</label> &nbsp;&nbsp;
+                    <input type="text" id="personalization_setting_assistant_name" style="width:60%" value="">
+                </div>
+                <div class="personal_row">
+                    <table width="100%"><tr>
+                        <td width="25%"></td>
+                        <td width="25%"></td>
+                        <td width="25%"></td>
+                        <td width="25%"><button id="save_personalization_setting" class="button" style="width:90%;height:22px;font-size:12px">Save</button></td>
+                    </tr></table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="settings" class="tabcontent">
+        <div class="tabhint">
+            <p>You need to save the relevant section for the changes to take effect. Join in my server in Discord for more information <a href="https://discord.gg/hhjxbuNk">aeromechanic's server</a>.</p>
+        </div>
+        <div id="settings_area">
+            <div class="setting_block">
+                <div class="setting_row">Assistant Setting</div>
+                <div class="setting_row">
+                    <label style="width:20%">Provider</label> &nbsp;&nbsp;
+                    <select id="assistant_setting_provider" style="width:80%">
+                    </select>
+                </div>
+                <div class="setting_row">
+                    <label style="width:20%">Model</label> &nbsp;&nbsp;
+                    <select id="assistant_setting_model" style="width:80%">
+                    </select>
+                </div>
+                <div class="setting_row" style="height:24px">
+                    <input type="checkbox" style="width:12px;height:12px" id="assistant_setting_active">
+                    <label for="assistant_setting_active" style="font-size:12px;width:40%;height:24px;line-height:24px">Active Assistant</label>
+                </div>
+                <div class="setting_row">
+                    <table width="100%"><tr>
+                        <td width="25%"></td>
+                        <td width="25%"></td>
+                        <td width="25%"></td>
+                        <td width="25%"><button id="save_assistant_setting" class="button" style="width:90%;height:22px;font-size:12px">Save</button></td>
+                    </tr></table>
+                </div>
+            </div>
+            <div class="setting_block" id="ollama_setting_block">
+                <div class="setting_row">Ollama Setting</div>
+                <div class="setting_row">
+                    <label style="width:20%">Endpoint</label> &nbsp;&nbsp;
+                    <input type="text" id="ollama_setting_endpoint" style="width:80%" value="">
+                </div>
+                <div class="setting_row">
+                    <table width="100%"><tr>
+                        <td width="25%"></td>
+                        <td width="25%"></td>
+                        <td width="25%"></td>
+                        <td width="25%"><button id="save_ollama_setting" class="button" style="width:90%;height:22px;font-size:12px">Save</button></td>
+                    </tr></table>
+                </div>
+            </div>
+            <div class="setting_block" id="chatgpt_setting_block" style="display:none">
+                <div class="setting_row">ChatGPT Setting</div>
+                <div class="setting_row">
+                    <label style="width:20%">Token</label> &nbsp;&nbsp;
+                    <input type="text" id="chatgpt_setting_token" style="width:80%" value="">
+                </div>
+                <div class="setting_row">
+                    <table width="100%"><tr>
+                        <td width="25%"></td>
+                        <td width="25%"></td>
+                        <td width="25%"></td>
+                        <td width="25%"><button id="save_chatgpt_setting" class="button" style="width:90%;height:22px;font-size:12px">Save</button></td>
+                    </tr></table>
+                </div>
+            </div>
+            <div class="setting_block" id="claude_setting_block" style="display:none">
+                <div class="setting_row">Claude Setting</div>
+                <div class="setting_row">
+                    <label style="width:20%">Token</label> &nbsp;&nbsp;
+                    <input type="text" id="claude_setting_token" style="width:80%" value="">
+                </div>
+                <div class="setting_row">
+                    <table width="100%"><tr>
+                        <td width="25%"></td>
+                        <td width="25%"></td>
+                        <td width="25%"></td>
+                        <td width="25%"><button id="save_claude_setting" class="button" style="width:90%;height:22px;font-size:12px">Save</button></td>
+                    </tr></table>
+                </div>
+            </div>
+            <div class="setting_block" id="qwen_setting_block">
+                <div class="setting_row">QWen Setting</div>
+                <div class="setting_row">
+                    <label style="width:20%">Token</label> &nbsp;&nbsp;
+                    <input type="text" id="qwen_setting_token" style="width:80%" value="">
+                </div>
+                <div class="setting_row">
+                    <table width="100%"><tr>
+                        <td width="25%"></td>
+                        <td width="25%"></td>
+                        <td width="25%"></td>
+                        <td width="25%"><button id="save_qwen_setting" class="button" style="width:90%;height:22px;font-size:12px">Save</button></td>
+                    </tr></table>
+                </div>
+            </div>
+            <div class="setting_block" id="siliconflow_setting_block">
+                <div class="setting_row">SiliconFlow Setting</div>
+                <div class="setting_row">
+                    <label style="width:20%">Token</label> &nbsp;&nbsp;
+                    <input type="text" id="siliconflow_setting_token" style="width:80%" value="">
+                </div>
+                <div class="setting_row">
+                    <table width="100%"><tr>
+                        <td width="25%"></td>
+                        <td width="25%"></td>
+                        <td width="25%"></td>
+                        <td width="25%"><button id="save_siliconflow_setting" class="button" style="width:90%;height:22px;font-size:12px">Save</button></td>
+                    </tr></table>
+                </div>
+            </div>
+            <div class="setting_block">
+                <div class="setting_row">Reset Settings</div>
+                <div class="setting_row" style="justify-content: center">
+                    <button id="reset_assistant_setting" class="button" style="width:80%;height:22px;font-size:12px;background-color:rgb(231,88,48);color:white">Reset Assistant Settings</button>
+                </div>
+                <div class="setting_row" style="justify-content: center">
+                    <button id="clear_assistant_memory" class="button" style="width:80%;height:22px;font-size:12px;background-color:rgb(231,88,48);color:white">Clear Assistant Memory</button>
+                </div>
+                <div class="setting_row" style="justify-content: center">
+                    <button id="clear_assistant_history" class="button" style="width:80%;height:22px;font-size:12px;background-color:rgb(118,11,18);color:white">Clear Assistant History</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="sidepanel.js" defer></script>
+</body>
+</html>
