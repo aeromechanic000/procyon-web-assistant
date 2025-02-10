@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Procyon Web Assistant",
   "version": "1.0",
-  "description": "Procyon Web Assistant is a Chrome extension that adds LLM capabilities to your browser's side panel. This chat-style interface allows you to interact with webpage content using local-hosted or API-accessed popular language models. Visit the github page https://github.com/aeromechanic000/procyon-web-assistant and youtube channel @aeromechanic_vlog for more information, and welcome join in my discord server https://discord.gg/hhjxbuNk to have a direct communication.",
+  "description": "Procyon Web Assistant is a Chrome extension that adds LLM capabilities to your browser's side panel. This chat-style interface allows you to interact with webpage content using local-hosted or API-accessed popular language models. Visit the github page https://github.com/aeromechanic000/procyon-web-assistant and youtube channel @aeromechanic_vlog for more information, and welcome join in my discord server https://discord.gg/PJv8TrBYVJ to have a direct communication.",
   "icons": {
     "16": "images/icon-16.png",
     "48": "images/icon-48.png",
