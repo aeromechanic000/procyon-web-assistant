@@ -10,4 +10,4 @@ The github page for the chrome extension procyon-web-assistant.
 
 📺 Youtube: https://www.youtube.com/channel/UCGdit7JXNSmdgc7Iuz4e6xw
 
-🎮 Discord: https://discord.gg/hhjxbuNk
+🎮 Discord: https://discord.gg/PJv8TrBYVJ
