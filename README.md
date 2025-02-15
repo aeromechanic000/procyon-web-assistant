@@ -43,7 +43,7 @@ To access the locally deployed Ollama, you need to manually adjust its security 
 
 ### Set Ollama Endpoint 
 
-Put the API URL (by defaut, it is http://192.168.158.8:11434 ) into the "Endpoint" field of "Ollama Setting" in the setting tab, and save.
+Put the API URL (by defaut, it is http://127.0.0.1:11434 ) into the "Endpoint" field of "Ollama Setting" in the setting tab, and save.
 
 ### Select Provider and Model
 
