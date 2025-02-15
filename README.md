@@ -20,7 +20,7 @@ The github page for the chrome extension procyon-web-assistant.
 ### Add Procyon Web Assistant to Chrome Extensions 
 
 Procyon Web Assistant is under development. For people who would like to take the code as a refenrece or interested use it to better process webpages with the help of LLMs, they can download the source code into a local directory and follow the process to install an Chome Extension from unpacked files as instructed in Chrome's official tutorial
-(https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world?authuser=3).
+(https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world).
 
 ### Access to Local Ollama
 
