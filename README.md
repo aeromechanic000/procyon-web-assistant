@@ -22,14 +22,14 @@ The github page for the chrome extension procyon-web-assistant.
 Procyon Web Assistant is under development. For people who would like to take the code as a refenrece or interested use it to better process webpages with the help of LLMs, they can download the source code into a local directory and follow the process to install an Chome Extension from unpacked files as instructed in Chrome's official tutorial
 (https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world).
 
-https://www.youtube.com/watch?v=Q_jdB3hdS84
+[![Tutorial #0: Manually Add The Chrome Extension](https://img.youtube.com/vi/Q_jdB3hdS84/0.jpg)](https://www.youtube.com/watch?v=Q_jdB3hdS84)
 
 ### Access to Local Ollama
 
 To access the locally deployed Ollama, you need to manually adjust its security settings.
 (As part of this project, we aim to provide a solution with full transparency, ensuring users can use the Procyon Web Assistant without concerns about privacy leaks or security risks.)
 
-https://www.youtube.com/watch?v=X1uTVUjqh40
+[![Tutorial #1: Access to Local Ollama](https://img.youtube.com/vi/X1uTVUjqh40/0.jpg)](https://www.youtube.com/watch?v=X1uTVUjqh40)
 
 1. To modify Ollama's security level, run the following command in the terminal:
 
