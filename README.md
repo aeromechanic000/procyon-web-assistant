@@ -29,7 +29,9 @@ To access the locally deployed Ollama, you need to manually adjust its security 
 
 1. To modify Ollama's security level, run the following command in the terminal:
 
+```
     launchctl setenv OLLAMA_ORIGINS "*"
+```
 
 2. Restart Ollama.
 3. **Note** : You will need to set the OLLAMA_ORIGINS environment variable each time the hosting computer is restarted.
