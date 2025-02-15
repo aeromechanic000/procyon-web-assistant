@@ -575,7 +575,8 @@ async function generate_assistant_output(prompt, context = null) {
     context["background"] = {
         "date" : get_current_date(),
         "time" : get_current_time(),
-        "preferred_time" : assistant_data["personalization_setting"]["preferred_name"],
+        "preferred_name" : assistant_data["personalization_setting"]["preferred_name"],
+        "assistant_name" : assistant_data["personalization_setting"]["assistant_name"],
     }
 
     let prompt_with_context = rebuild_prompt_with_context(prompt, context)

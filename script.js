@@ -392,7 +392,9 @@ function get_action_protocol() {
 }
 
 function get_page_info_instruction() {
-    return `The content between <page_content> and </page_content> is the webpage the user is reading. Use this page information only when necessary to answer the user’s prompt. If it's not needed, ignore it. If you do use the page information, make sure it directly supports your answer.`;
+    return `The content between <page_content> and </page_content> is the webpage the user is reading. Use this page information only when necessary to answer the user’s prompt. If it's not needed, ignore it. If you do use the page information, make sure it directly supports your answer.
+
+- When user is communicating with you without requiring any task relevant to the webpage, DO NOT consider the content in the section of <page_content>.`;
 }
 
 function get_empty_page_instruction() {
