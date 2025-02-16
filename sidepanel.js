@@ -6,6 +6,7 @@ const assistant_input_online = document.getElementById("assistant_input_online")
 const assistant_setting_provider_select = document.getElementById("assistant_setting_provider");
 const assistant_setting_model_select = document.getElementById("assistant_setting_model");
 const assistant_setting_active_input = document.getElementById("assistant_setting_active");
+const assistant_setting_hide_input = document.getElementById("assistant_setting_hide");
 const assistant_setting_memory_input = document.getElementById("assistant_setting_memory");
 const assistant_setting_theme_select = document.getElementById("assistant_setting_theme");
 const personalization_setting_preferred_name_input = document.getElementById("personalization_setting_preferred_name");
@@ -42,6 +43,20 @@ document.getElementById('assistant_input_text').addEventListener('input', functi
 });
 
 document.getElementById('assistant_input_online').addEventListener('change', function() {
+});
+
+document.getElementById('assistant_setting_hide').addEventListener('change', function() {
+    if (assistant_setting_hide_input.checked == true) {
+        chatgpt_setting_token_input.type = "password";
+        claude_setting_token_input.type = "password";
+        qwen_setting_token_input.type = "password";
+        siliconflow_setting_token_input.type = "password";
+    } else {
+        chatgpt_setting_token_input.type = "text";
+        claude_setting_token_input.type = "text";
+        qwen_setting_token_input.type = "text";
+        siliconflow_setting_token_input.type = "text";
+    }
 });
 
 document.getElementById('save_assistant_setting').addEventListener('click', function() {
