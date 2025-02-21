@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Traffic Light Simulation</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .controls {
+            margin: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #gameControls {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <button id="startButton" onclick="startGame()">Start Game</button>
+        <button id="resetButton" onclick="resetGame()">Reset Game</button>
+    </div>
+    <div id="gameControls" class="controls">
+        <button onclick="setLight('red')" style="background-color: #ff4444">Red</button>
+        <button onclick="setLight('yellow')" style="background-color: #ffaa00">Yellow</button>
+        <button onclick="setLight('green')" style="background-color: #44aa44">Green</button>
+    </div>
+    <div id="canvas-container"></div>
+
+    <script>
+        let cars = [];
+        let lightColor = 'red';
+        let timer = 0;
+        let spawnTimer = 0;
+        const SAFE_DISTANCE = 20;
+        let gameStarted = false;
+        let autoLightChange = false;
+
+        class Car {
+            constructor() {
+                this.x = 0;
+                this.y = 250;
+                this.speed = 4;
+                this.width = 40;
+                this.height = 20;
+                this.stopped = false;
+            }
+
+            move() {
+                if (!this.stopped) {
+                    this.x += this.speed;
+                }
+            }
+
+            draw() {
+                fill(0, 0, 255);
+                rect(this.x, this.y, this.width, this.height);
+            }
+
+            checkLight(lightX) {
+                if (lightColor === 'red' && this.x + this.width > lightX - 60 && this.x < lightX - 40) {
+                    this.stopped = true;
+                } else if (lightColor === 'green') {
+                    this.stopped = false;
+                }
+            }
+
+            checkCollision(otherCars) {
+                for (let car of otherCars) {
+                    if (car !== this) {
+                        if (this.x + this.width + SAFE_DISTANCE > car.x && 
+                            this.x < car.x + car.width) {
+                            this.stopped = true;
+                            if (this.x + this.width + SAFE_DISTANCE > car.x) {
+                                this.x = car.x - this.width - SAFE_DISTANCE;
+                            }
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+
+        function setup() {
+            let canvas = createCanvas(800, 500);
+            canvas.parent('canvas-container');
+        }
+
+        function draw() {
+            if (!gameStarted) return;
+
+            background(200);
+
+            // Draw road
+            fill(100);
+            rect(0, 240, width, 40);
+
+            // Draw traffic light pole
+            fill(100);
+            rect(600, 150, 10, 100);
+
+            // Draw traffic light
+            fill(50);
+            rect(580, 150, 50, 120);
+
+            // Traffic light colors
+            if (lightColor === 'red') {
+                fill(255, 0, 0);
+            } else {
+                fill(100);
+            }
+            ellipse(605, 170, 30);
+
+            if (lightColor === 'yellow') {
+                fill(255, 255, 0);
+            } else {
+                fill(100);
+            }
+            ellipse(605, 210, 30);
+
+            if (lightColor === 'green') {
+                fill(0, 255, 0);
+            } else {
+                fill(100);
+            }
+            ellipse(605, 250, 30);
+
+            // Automatic light changes if enabled
+            if (autoLightChange) {
+                timer++;
+                if (timer > 200 && lightColor === 'red') {
+                    lightColor = 'green';
+                    timer = 0;
+                } else if (timer > 150 && lightColor === 'green') {
+                    lightColor = 'yellow';
+                    timer = 0;
+                } else if (timer > 50 && lightColor === 'yellow') {
+                    lightColor = 'red';
+                    timer = 0;
+                }
+            }
+
+            // Spawn new cars randomly
+            spawnTimer++;
+            let lastCar = cars[cars.length - 1];
+            if (spawnTimer > 60 && random() < 0.3 && 
+                (!lastCar || lastCar.x > 80)) {
+                cars.push(new Car());
+                spawnTimer = 0;
+            }
+
+            cars.sort((a, b) => a.x - b.x);
+
+            for (let i = cars.length - 1; i >= 0; i--) {
+                cars[i].checkLight(600);
+                cars[i].checkCollision(cars);
+                cars[i].move();
+                cars[i].draw();
+
+                if (cars[i].x > width) {
+                    cars.splice(i, 1);
+                }
+            }
+
+            // Display number of cars
+            fill(0);
+            textSize(20);
+            text('Cars: ' + cars.length, 20, 30);
+        }
+
+        function startGame() {
+            gameStarted = true;
+            document.getElementById('gameControls').style.display = 'flex';
+            document.getElementById('startButton').textContent = 'Game Running';
+            document.getElementById('startButton').disabled = true;
+        }
+
+        function resetGame() {
+            gameStarted = false;
+            cars = [];
+            lightColor = 'red';
+            timer = 0;
+            spawnTimer = 0;
+            document.getElementById('startButton').textContent = 'Start Game';
+            document.getElementById('startButton').disabled = false;
+            document.getElementById('gameControls').style.display = 'none';
+            clear();
+        }
+
+        function setLight(color) {
+            lightColor = color;
+            autoLightChange = false;
+        }
+    </script>
+</body>
+</html>
